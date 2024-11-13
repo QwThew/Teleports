@@ -35,7 +35,7 @@ public class UserService implements UserHandler, Listener {
      * @return created User
      */
     @Override
-    public User createUser(Player player) {
+    public User loadUser(Player player) {
         User user = getUser(player);
         if (user != null) return user;
 
@@ -45,7 +45,7 @@ public class UserService implements UserHandler, Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
         Player player = event.getPlayer();
-        User user = createUser(player);
+        User user = loadUser(player);
         users.put(player, user);
     }
 
@@ -53,7 +53,7 @@ public class UserService implements UserHandler, Listener {
     public void onQuit(PlayerQuitEvent event){
         Player player = event.getPlayer();
         User user = getUser(player);
-        shutdownUser(user);
+        unloadUser(user, true);
     }
 
     /**
@@ -61,14 +61,15 @@ public class UserService implements UserHandler, Listener {
      * @param user
      * @return removed User
      */
-    @Override
-    public void shutdownUser(User user) {
+    public void unloadUser(User user, boolean isCached) {
         FileUtils.saveFileUser(user);
-        Bukkit.getScheduler().runTaskLaterAsynchronously(Teleports.getInstance(), () -> users.remove(user.getPlayer()), 3600L);
+
+        if (isCached)
+            Bukkit.getScheduler().runTaskLaterAsynchronously(Teleports.getInstance(), () -> users.remove(user.getPlayer()), 3600L);
     }
 
     @Override
     public void shutdown() {
-
+        users.forEach((key, value) -> unloadUser(value, false));
     }
 }
