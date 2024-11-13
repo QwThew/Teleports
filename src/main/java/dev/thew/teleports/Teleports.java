@@ -10,14 +10,18 @@ public final class Teleports extends JavaPlugin {
     @Getter
     @Setter
     private static Teleports instance;
-    private final HandlerService service = new HandlerService();
+    private final HandlerService handlers = new HandlerService();
 
     @Override
     public void onEnable() {
         setInstance(this);
-        service.load();
+        handlers.load();
     }
 
     @Override
-    public void onDisable() {}
+    public void onDisable() {
+        handlers.shutdown();
+    }
+
+
 }
