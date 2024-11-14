@@ -12,7 +12,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import java.util.HashMap;
 
-public class UserService implements UserHandler, Listener {
+public final class UserService implements UserHandler, Listener {
 
     private final HashMap<Player, User> users = new HashMap<>();
 
@@ -21,19 +21,19 @@ public class UserService implements UserHandler, Listener {
         Teleports instance = Teleports.getInstance();
         Bukkit.getPluginManager().registerEvents(this, instance);
     }
-    /**
-     * @param player
-     * @return User
-     */
+
     @Override
     public User getUser(Player player) {
         return users.getOrDefault(player, null);
     }
 
-    /**
-     * @param player
-     * @return created User
-     */
+    @Override
+    public User getUser(String playerName) {
+        Player player = Bukkit.getPlayerExact(playerName);
+        if (player == null) return null;
+        return getUser(player);
+    }
+
     @Override
     public User loadUser(Player player) {
         User user = getUser(player);
@@ -56,11 +56,6 @@ public class UserService implements UserHandler, Listener {
         unloadUser(user, true);
     }
 
-    /**
-     * Cached user 3 minutes (3600 ticks)
-     * @param user
-     * @return removed User
-     */
     public void unloadUser(User user, boolean isCached) {
         FileUtils.saveFileUser(user);
 

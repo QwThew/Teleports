@@ -1,44 +1,44 @@
 messages:
-  tpa-requester-request:
-    text: " Вы отправили запрос к игроку %requested%!"
+  tpa-sender-request:
+    text: " Вы отправили запрос к игроку %receiver%!"
     sound: "BLOCK_NOTE_BLOCK_BIT"
     pitch: 1
     volume: 1
-  tpa-requested-request:
-    text: " Вам отправил запрос на телепортацию игрок %requester%!"
-    sound: "BLOCK_NOTE_BLOCK_BIT"
-    pitch: 1
-    volume: 1
-
-  tpa-requester-deny:
-    text: " Игрок %requested% отменил ваш запрос!"
-    sound: "BLOCK_NOTE_BLOCK_BIT"
-    pitch: 1
-    volume: 1
-  tpa-requested-deny:
-    text: " Вы отменили телепортацию от игрока %requester%!"
+  tpa-receiver-request:
+    text: " Вам отправил запрос на телепортацию игрок %sender%!"
     sound: "BLOCK_NOTE_BLOCK_BIT"
     pitch: 1
     volume: 1
 
-  tpa-requester-accept:
-    text: " Игрок %requested% принял ваш запрос! Телепорт через %time% секунд!"
+  tpa-sender-deny:
+    text: " Игрок %receiver% отменил ваш запрос!"
     sound: "BLOCK_NOTE_BLOCK_BIT"
     pitch: 1
     volume: 1
-  tpa-requested-accept:
+  tpa-receiver-deny:
+    text: " Вы отменили телепортацию от игрока %sender%!"
+    sound: "BLOCK_NOTE_BLOCK_BIT"
+    pitch: 1
+    volume: 1
+
+  tpa-sender-accept:
+    text: " Игрок %receiver% принял ваш запрос! Телепорт через %time% секунд!"
+    sound: "BLOCK_NOTE_BLOCK_BIT"
+    pitch: 1
+    volume: 1
+  tpa-receiver-accept:
     text: " Вы приняли телепортацию! Телепорт через %time% секунд!"
     sound: "BLOCK_NOTE_BLOCK_BIT"
     pitch: 1
     volume: 1
 
-  tpa-requester-timeout:
-    text: " Игрок %requested% не принял ваш запрос!"
+  tpa-sender-timeout:
+    text: " Игрок %receiver% не принял ваш запрос!"
     sound: "BLOCK_NOTE_BLOCK_BIT"
     pitch: 1
     volume: 1
-  tpa-requested-timeout:
-    text: " Вы не приняли запрос от игрока %requester%!"
+  tpa-receiver-timeout:
+    text: " Вы не приняли запрос от игрока %sender%!"
     sound: "BLOCK_NOTE_BLOCK_BIT"
     pitch: 1
     volume: 1

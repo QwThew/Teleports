@@ -41,7 +41,7 @@ public class FileUtils {
     public static void saveFileUser(User user){
         Plugin instance = Teleports.getInstance();
 
-        File file = new File(instance.getDataFolder(), user.getUuid());
+        File file = new File(instance.getDataFolder(), user.getUUID().toString());
 
         YamlConfiguration yml = YamlConfiguration.loadConfiguration(file);
         yml.set("ignored", user.getIgnoredPlayers());

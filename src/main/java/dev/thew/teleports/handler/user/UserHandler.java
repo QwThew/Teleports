@@ -7,6 +7,9 @@ import org.bukkit.entity.Player;
 public interface UserHandler extends Handler {
 
     User getUser(Player player);
+
+    User getUser(String playerName);
+
     User loadUser(Player player);
     void unloadUser(User user, boolean isCached);
 

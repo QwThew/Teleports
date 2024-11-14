@@ -5,7 +5,7 @@ import dev.thew.teleports.handler.user.UserService;
 
 import java.util.HashMap;
 
-public class HandlerService {
+public final class HandlerService {
 
     private static final HashMap<String, Handler> handlers = new HashMap<>();
 
