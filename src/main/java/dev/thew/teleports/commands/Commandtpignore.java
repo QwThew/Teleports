@@ -10,6 +10,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,6 +23,12 @@ public class Commandtpignore implements TabExecutor {
         UserHandler userHandler = HandlerService.getHandler(UserService.class);
         User user = userHandler.getUser(player);
 
+        List<String> playerName = new ArrayList<>(Arrays.asList(args));
+
+        for (String name : playerName)
+            user.addIgnoredPlayer(name);
+
+        // TODO user message success added ignored players
         return true;
     }
 

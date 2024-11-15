@@ -5,6 +5,7 @@ import dev.thew.teleports.handler.Handler;
 public interface SettingsHandler extends Handler {
 
     int getMaxRequests();
-
     int getTeleportDelay();
+
+    int getTeleportTimeOut();
 }

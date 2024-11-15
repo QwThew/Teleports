@@ -20,7 +20,8 @@ public class TeleportUser {
     public @Nullable TeleportRequest getOutstandingRequest(String playerUsername, boolean inform) {
         if (!teleportRequestQueue.containsKey(playerUsername)) return null;
 
-        final long timeout = 120;
+        SettingsHandler settingsHandler = HandlerService.getHandler(SettingsService.class);
+        final long timeout = settingsHandler.getTeleportTimeOut();
         final TeleportRequest request = teleportRequestQueue.get(playerUsername);
 
         if (System.currentTimeMillis() - request.getTime() <= timeout * 1000) return request;
@@ -43,7 +44,8 @@ public class TeleportUser {
     public TeleportRequest getNextRequest(boolean inform, boolean ignoreExpirations, boolean excludeHere) {
         if (teleportRequestQueue.isEmpty()) return null;
 
-        final long timeout = 120;
+        SettingsHandler settingsHandler = HandlerService.getHandler(SettingsService.class);
+        final long timeout = settingsHandler.getTeleportTimeOut();
         final List<String> keys = new ArrayList<>(teleportRequestQueue.keySet());
         Collections.reverse(keys);
 

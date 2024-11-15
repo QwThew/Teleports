@@ -24,7 +24,7 @@ public class Commandtpa implements TabExecutor {
         if (receiver == null) return true; // TODO sender message User not found
 
         if (sender.getName().equalsIgnoreCase(receiver.getName())) {
-            return true; // TODO sender message teleport urself
+            return true; // TODO sender message cant teleport urself
         }
 
         if (!receiver.isTeleportEnabled()) {

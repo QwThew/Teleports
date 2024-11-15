@@ -10,10 +10,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class Commandtpacancel implements TabExecutor {
+public class Commandtpunignore implements TabExecutor {
 
     @Override
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String s, String @NonNull [] args) {
@@ -21,25 +23,12 @@ public class Commandtpacancel implements TabExecutor {
         UserHandler userHandler = HandlerService.getHandler(UserService.class);
         User user = userHandler.getUser(player);
 
-        if (args.length == 0) {
-            int cancellations = 0;
-            for (final User onlineUser : userHandler.getUsers()) {
-                if (onlineUser == user) continue;
-                if (cancelTeleportRequest(onlineUser, user)) cancellations++;
-            }
-            if (cancellations > 0) {
-                // TODO user message teleport requeast all cancelled
-            } else {
-                // TODO message no pending request
-            }
-        } else {
+        List<String> playerName = new ArrayList<>(Arrays.asList(args));
 
-            final User targetPlayer = userHandler.getUser(args[0]);
-            if (targetPlayer != null && cancelTeleportRequest(targetPlayer, user)) {
-                // TODO user message teleport request specific cancelled
-            }
-        }
+        for (String name : playerName)
+            user.removeIgnoredPlayer(name);
 
+        // TODO user message success removed ignored players
         return true;
     }
 
@@ -48,7 +37,4 @@ public class Commandtpacancel implements TabExecutor {
         return Collections.emptyList();
     }
 
-    public static boolean cancelTeleportRequest(final User receiverRequest, final User senderRequest) {
-        return receiverRequest.removeRequest(senderRequest.getName()) != null;
-    }
 }

@@ -24,6 +24,11 @@ public class SettingsService implements SettingsHandler {
     }
 
     @Override
+    public int getTeleportTimeOut(){
+        return config.getInt("time-out");
+    }
+
+    @Override
     public void shutdown() {
         // TODO document why this method is empty
     }

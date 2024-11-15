@@ -10,7 +10,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public final class UserService implements UserHandler, Listener {
 
@@ -56,11 +58,17 @@ public final class UserService implements UserHandler, Listener {
         unloadUser(user, true);
     }
 
+    @Override
     public void unloadUser(User user, boolean isCached) {
         FileUtils.saveFileUser(user);
 
         if (isCached)
             Bukkit.getScheduler().runTaskLaterAsynchronously(Teleports.getInstance(), () -> users.remove(user.getPlayer()), 3600L);
+    }
+
+    @Override
+    public List<User> getUsers(){
+        return new ArrayList<>(users.values());
     }
 
     @Override
