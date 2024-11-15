@@ -1,5 +1,6 @@
 package dev.thew.teleports.request;
 
+import dev.thew.teleports.model.User;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Location;
@@ -11,13 +12,28 @@ import java.util.UUID;
 public class TeleportRequest {
 
     private final String name;
-    private final UUID requesterUuid;
     private Location location;
     private long time;
+    private boolean complete = true;
 
-    public TeleportRequest(String name, UUID requesterUuid) {
+    public TeleportRequest(String name) {
         this.name = name;
-        this.requesterUuid = requesterUuid;
+    }
+
+    public void execute(User sender){
+
+    }
+
+    public void accept(){
+        if (!isValid()) return;
+    }
+
+    public void reject(){
+
+    }
+
+    private boolean isValid(){
+        return complete;
     }
 
 }

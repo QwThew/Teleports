@@ -56,8 +56,7 @@
 //                // If this happens, let's give the user the benifit of the doubt.
 //                teleportOwner.setTimeLastTeleport(time.getTimeInMillis());
 //                return false;
-//            } else if (lastTime > earliestLong
-//                    && cooldownApplies()) {
+//            } else if (lastTime > earliestLong && cooldownApplies()) {
 //                time.setTimeInMillis(lastTime);
 //                time.add(Calendar.SECOND, (int) cooldown);
 //                time.add(Calendar.MILLISECOND, (int) ((cooldown * 1000.0) % 1000.0));

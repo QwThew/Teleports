@@ -6,4 +6,5 @@ public interface SettingsHandler extends Handler {
 
     int getMaxRequests();
 
+    int getTeleportDelay();
 }

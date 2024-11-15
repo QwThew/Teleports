@@ -21,24 +21,26 @@ public class Commandtpa implements TabExecutor {
         UserHandler userHandler = HandlerService.getHandler(UserService.class);
         final User sender = userHandler.getUser(senderPlayer);
         final User receiver = userHandler.getUser(args[0]);
-//        if (receiver == null) return false;
-//
-//        if (sender.getName().equalsIgnoreCase(receiver.getName())) {
-//            return false; // TODO message
-//        }
-//
-//        if (!receiver.isTeleportEnabled()) {
-//            return false; // TODO message
-//        }
-//
-//        if (receiver.hasOutstandingRequest(sender.getName(), false)) {
-//            return false; // TODO message
-//        }
-//
-//        if (!receiver.isIgnoredPlayer(sender.getName())) {
-//            receiver.requestTeleport(sender, false);
-//        }
-        return false;
+        if (receiver == null) return true; // TODO sender message User not found
+
+        if (sender.getName().equalsIgnoreCase(receiver.getName())) {
+            return true; // TODO sender message teleport urself
+        }
+
+        if (!receiver.isTeleportEnabled()) {
+            return true; // TODO sender message receiver disable teleport
+        }
+
+        if (receiver.hasOutstandingRequest(sender.getName())) {
+            return true; // TODO sender message receiver already has teleport request
+        }
+
+        if (receiver.isIgnoredPlayer(sender.getName())) {
+            return true; // TODO sender message receiver ignored you
+        }
+
+        receiver.requestTeleport(sender);
+        return true;
     }
 
     @Override

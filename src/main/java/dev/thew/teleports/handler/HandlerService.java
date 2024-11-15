@@ -1,5 +1,9 @@
 package dev.thew.teleports.handler;
 
+import dev.thew.teleports.handler.message.MessageHandler;
+import dev.thew.teleports.handler.message.MessageService;
+import dev.thew.teleports.handler.settings.SettingsHandler;
+import dev.thew.teleports.handler.settings.SettingsService;
 import dev.thew.teleports.handler.user.UserHandler;
 import dev.thew.teleports.handler.user.UserService;
 
@@ -11,8 +15,16 @@ public final class HandlerService {
 
     public void load() {
 
+        //UserService
         UserHandler userHandler = new UserService();
         addHandler(userHandler);
+
+        //SettingsService
+        SettingsHandler settingsHandler = new SettingsService();
+        addHandler(settingsHandler);
+
+        MessageHandler messageHandler = new MessageService();
+        addHandler(messageHandler);
 
         loadHandler();
     }

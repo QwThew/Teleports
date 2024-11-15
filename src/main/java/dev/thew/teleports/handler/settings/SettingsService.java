@@ -8,18 +8,23 @@ public class SettingsService implements SettingsHandler {
     private FileConfiguration config;
 
     @Override
-    public int getMaxRequests(){
-        return config.getInt("max-requests");
-    }
-
-    @Override
     public void load() {
         Teleports plugin = Teleports.getInstance();
         config = plugin.getConfig();
     }
 
     @Override
-    public void shutdown() {
+    public int getMaxRequests(){
+        return config.getInt("max-requests");
+    }
 
+    @Override
+    public int getTeleportDelay(){
+        return config.getInt("delay");
+    }
+
+    @Override
+    public void shutdown() {
+        // TODO document why this method is empty
     }
 }
